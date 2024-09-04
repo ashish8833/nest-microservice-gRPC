@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "watchAssets": true,
+    "assets": [
+      {
+        "include": "../assets",
+        "outDir": "dist/apps"
+      }
+    ]
+  },
+  "monorepo": true,
+  "root": "./",
+  "projects": {
+    "nest-microservice-g-rpc": {
+      "type": "application",
+      "root": "apps/nest-microservice-g-rpc",
+      "entryFile": "main",
+      "sourceRoot": "apps/nest-microservice-g-rpc/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/nest-microservice-g-rpc/tsconfig.app.json"
+      }
+    },
+    "api-gateway": {
+      "type": "application",
+      "root": "apps/api-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
+      }
+    }
+  }
+}

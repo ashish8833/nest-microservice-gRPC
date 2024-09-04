@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package user;
+
+message User {
+    string uuid = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string email = 4;
+    string gender = 5;
+    string addressFirstLine = 6;
+    string addressSecondLine = 7;
+    bool isActive = 8;
+}
+
+message Pagination {
+   optional int32 page = 1;
+   optional int32 size = 2;
+   optional string search = 3;
+}
+
+message Users {
+    repeated User users = 1;
+}
+
+service UserService {
+    rpc GetUsers(Pagination) returns (Users) {}
+}
