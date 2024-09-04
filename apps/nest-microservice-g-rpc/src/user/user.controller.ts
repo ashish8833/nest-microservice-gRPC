@@ -3,11 +3,9 @@ import {
   Pagination,
   User,
   Users,
-  UserServiceClient,
   UserServiceController,
   UserServiceControllerMethods,
 } from 'apps/nest-microservice-g-rpc/assets/proto/user';
-import { Observable } from 'rxjs';
 import { faker } from '@faker-js/faker';
 
 @Controller()
@@ -19,13 +17,19 @@ export class UserController implements UserServiceController, OnModuleInit {
     this.users = this.createRandomUser();
   }
   getUsers(request: Pagination): Users {
+    const { page = 0, size = 10 } = request;
+
+    const startIndex = page * size;
+    const endIndex = (page + 1) * size;
+
     return {
-      users: this.users,
+      users: this.users.slice(startIndex, endIndex),
+      total: this.users.length,
     };
   }
 
   createRandomUser(): User[] {
-    const users: User[] = Array.from({ length: 10 }).map(() => ({
+    const users: User[] = Array.from({ length: 100 }).map(() => ({
       uuid: faker.string.uuid(),
       firstName: faker.person.firstName(),
       lastName: faker.person.lastName(),

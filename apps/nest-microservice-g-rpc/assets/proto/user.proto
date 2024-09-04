@@ -16,11 +16,11 @@ message User {
 message Pagination {
    optional int32 page = 1;
    optional int32 size = 2;
-   optional string search = 3;
 }
 
 message Users {
     repeated User users = 1;
+    int32 total = 2;
 }
 
 service UserService {

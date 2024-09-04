@@ -24,11 +24,11 @@ export interface User {
 export interface Pagination {
   page?: number | undefined;
   size?: number | undefined;
-  search?: string | undefined;
 }
 
 export interface Users {
   users: User[];
+  total: number;
 }
 
 export const USER_PACKAGE_NAME = "user";
